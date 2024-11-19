@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> Star Wars Search </h1>
+
+<form action ='/results' method="POST">
+
+    <fieldset>
+        <legend>Find a Star Wars character:</legend>
+        <label>
+            <input type="number" name="character_index" min="1" max="88" value="1" required>
+        </label>
+        <input type="submit" value="Search!">
+    </fieldset>
+
+</form>
+
+<section id="results">
+    {% if context and context.get('error') %}
+        <p>{{ context.error }}</p>
+    {% elif context %}
+        <h2>Character Information</h2>
+        <p><strong>Name: </strong>{{ context.name }}</p>
+        <p><strong>Height: </strong>{{ context.height }} cm</p>
+        <p><strong>Mass: </strong> </strong>{{ context.mass }} kg</p>
+        <p><strong>Hair Color: </strong>{{ context.hair_color }}</p>
+        <p><strong>Eye Color: </strong>{{ context.eye_color }}</p>
+
+    {% endif %}
+</section>
+{% endblock %}
